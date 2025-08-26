@@ -1,0 +1,13 @@
+# note to self - upgrade ASAP
+# n multiplier 2, x509
+
+
+# npm audit report
+
+json-web-token  <=3.1.1
+Severity: high
+json-web-token library is vulnerable to a JWT algorithm confusion attack - https://github.com/advisories/GHSA-4xw9-cx39-r355
+fix available via `npm audit fix`
+node_modules/json-web-token
+
+1 high severity vulnerability
