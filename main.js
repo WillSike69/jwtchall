@@ -51,6 +51,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
+// Error-handling middleware (must be last)
+app.use((err, req, res, next) => {
+  // Optional: log internally without exposing details
+  if (process.env.NODE_ENV !== 'production') {
+    console.error(err); // full stack in dev only
+  } else {
+    // In production, you could log to a file or external service
+    // console.error(err);  // or send to monitoring
+  }
+
+  // Respond with a generic message
+  res.status(500).json({ error: "Internal Server Error" });
+});
+
 // ---------- COMMON COFFEE-THEME CSS ----------
 const commonCSS = `
 body { font-family: 'Open Sans', sans-serif; background: #f3f0e6;
